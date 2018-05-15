@@ -1,0 +1,31 @@
+﻿@using BannerflowTestApp.Data.Models
+@model IEnumerable<Banner>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Banners viewer</title>
+    
+</head> 
+<body>
+    @foreach (var banner in Model)
+    {
+        <div>
+            <p>
+                Created in @banner.Created.ToString("g")
+                @if (banner.Modified != null)
+                {
+                    <span>, modified in @(((DateTime)banner.Modified).ToString("g"))</span>
+                }
+            </p>
+            @Html.Raw(banner.Html)
+        </div>
+        <hr>
+    }
+    @if (!Model.Any())
+    {
+        <p>The banners list is empty.</p>
+    }
+</body>     
+</html>
